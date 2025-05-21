@@ -11,6 +11,7 @@ import os
 
 #variaveis
 login1 = 0
+carrinho = []
 
 
 
@@ -19,7 +20,13 @@ login1 = 0
 
 saida = ['06:00', '07:30', '09:00', '10:30', '12:00']
 chegada = ['07:30', '09:00', '10:30', '12:00', '13:30']
-                                                                            #veiculos, selecionar horarios, comprar passagem, poltronas disponiveis  
+
+#lista de compra da passagem
+carrinho = []
+valores = 55
+va = 0
+poltronas = [1, 2 ,3 , 4 ,5 , 6, 7, 8, 9, 10]
+#veiculos, selecionar horarios, comprar passagem, poltronas disponiveis  
 
 
 #Funções
@@ -34,7 +41,7 @@ def m_usuario():
         usu = int(input('Digite o número correspondente: '))
 
         if usu == 1: itinierarios()
-        elif usu == 2: ''
+        elif usu == 2: passagem()
         elif usu == 3:  ''  
         elif usu == 4: 
             print('Fechando o Programa')
@@ -111,13 +118,28 @@ def itinierarios():
             
      print(f'Horário de Saída: {saida[i]} --> Horário de Chegada: {chegada[i]}')
 
+def passagem():
+    print('---- Compra do Bilhete de Embarque ----\n\n')
+    print('----- Poltronas Disponíveis -----')
+    for i in range(len(poltronas)):
+        print(f'Poltronas: {poltronas[i]}')
+    print('\n---- Valor Unítario da Passagem: R$ 55,00 ----')
+    va = int(input('Digite suas Poltronas: '))
+    
+    if va == 1:
+        carrinho.append(valores)
+    elif va == 2: 
+        pass
+
         
     
     
 
+
+
+
 def alguma():
-    None
-    
+    pass
     
 os.system('cls') # Limpa a tela[]
 login()
