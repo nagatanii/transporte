@@ -23,7 +23,7 @@ chegada = ['07:30', '09:00', '10:30', '12:00', '13:30']
 
 #lista de compra da passagem
 carrinho = []
-valores = 55
+valores = 55.00
 va = 0
 poltronas = [1, 2 ,3 , 4 ,5 , 6, 7, 8, 9, 10]
 #veiculos, selecionar horarios, comprar passagem, poltronas disponiveis  
@@ -32,19 +32,20 @@ poltronas = [1, 2 ,3 , 4 ,5 , 6, 7, 8, 9, 10]
 #Funções
 def m_usuario():
     while True:
-        print('----- Menu Usuário -----')
+        os.system('cls')
+        print('----- Menu Usuário -----\n')
         print('1. Itinerários')
         print('2. Comprar Passagem') 
-        print('3. Meus Bilhetes')
+        print('3. Carrinho')
         print('4. Sair')
         
-        usu = int(input('Digite o número correspondente: '))
+        usu = int(input('\nDigite o número correspondente: '))
 
         if usu == 1: itinierarios()
         elif usu == 2: passagem()
-        elif usu == 3:  ''  
+        elif usu == 3: bilhetes() 
         elif usu == 4: 
-            print('Fechando o Programa')
+            print('Fechando o Programa...')
             break
 
 
@@ -111,25 +112,66 @@ def login():
     
 
 def itinierarios():
-    print('---- Itinerários ----')
+    os.system('cls')
+    print('---- Itinerários ----\n')
 
+    while True:
+        for i in range(len(saida)):
+                
+            print(f'Horário de Saída: {saida[i]} --> Horário de Chegada: {chegada[i]}')
+    
+    
+        opcao = input("\nDigite 0 para voltar ao menu anterior: ")
 
-    for i in range(len(saida)):
-            
-     print(f'Horário de Saída: {saida[i]} --> Horário de Chegada: {chegada[i]}')
+        if opcao == '0':
+            break  # Sai do loop e retorna ao menu anterior
+        else:
+            print("Opção inválida ou apenas visualização. Tente novamente.\n")
+
+    
 
 def passagem():
-    print('---- Compra do Bilhete de Embarque ----\n\n')
-    print('----- Poltronas Disponíveis -----')
-    for i in range(len(poltronas)):
-        print(f'Poltronas: {poltronas[i]}')
-    print('\n---- Valor Unítario da Passagem: R$ 55,00 ----')
-    va = int(input('Digite suas Poltronas: '))
-    
-    if va == 1:
-        carrinho.append(valores)
-    elif va == 2: 
-        pass
+    os.system('cls')
+    while True:
+        print('---- Compra do Bilhete de Embarque ----\n')
+
+        if not poltronas:
+            print("Todas as poltronas estão ocupadas.")
+            break
+
+        print('----- Poltronas Disponíveis -----')
+        for p in poltronas:
+            print(f'Poltrona: {p}')
+
+        print('\n---- Valor Unítario da Passagem: R$ 55,00 ----\n')
+        escolha = int(input('Digite o número da poltrona desejada:'))
+        
+        if escolha in poltronas: 
+            poltronas.remove(escolha)
+            carrinho.append({'poltrona': escolha, 'valor': valores})
+            print(f'\nPoltrona {escolha} adicionada ao carrinho.')
+        else:
+            print("\nPoltrona indisponível ou inválida.\n")
+        
+        continuar = input("\nDeseja escolher outra poltrona? (s/n): ").lower() #transforma a string em minusculo para não dar erro
+        if continuar != 's':
+            break
+
+def bilhetes():
+    os.system('cls')
+    while True:
+        total = 0
+        print('----- Seu Carrinho -----')
+        for item in carrinho:
+            print(f"Poltrona {item['poltrona']} - R$ {item['valor']:.2f}")
+            total += item['valor']
+
+        print(f"\nTotal: R$ {total:.2f}")
+        continuar = input("\nDeseja voltar? (s/n): ").lower()
+        if continuar != 's':
+            break
+
+
 
         
     
@@ -141,7 +183,7 @@ def passagem():
 def alguma():
     pass
     
-os.system('cls') # Limpa a tela[]
+os.system('cls') # Limpa a tela
 login()
     
     
