@@ -8,12 +8,15 @@ print('------ Transporte ------')
 
 #Biblioteca
 import os
+import time
 
 #variaveis
 login1 = 0
 carrinho = []
 
-
+#senhas
+senha_motorista = '1234567'
+login_motoriostaa = 'kauan'
 
 
 #Listas
@@ -46,6 +49,26 @@ def m_usuario():
         elif usu == 3: bilhetes() 
         elif usu == 4: 
             print('Fechando o Programa...')
+            break
+
+def login_motorista():
+    os.system('cls')
+    print('---------LOGIN MOTORISTA---------')
+    print ('\n')
+    while True:
+        login =  input('Digite seu login de usuário: ')
+        if login == login_motoriostaa:
+            print ('login correto')
+        else:
+            print ('login incorreto!! ')
+        senha = input('Digite a sua senha: ')
+        if senha == senha_motorista:
+            print ('senha correta!! Caregando....')
+            time.sleep(3)
+            m_motorista()
+            os.system('cls')
+        else:
+            print ('senha incorreta!! ')
             break
 
 
