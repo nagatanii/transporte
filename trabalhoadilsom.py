@@ -26,8 +26,9 @@ carrinho = []
 valores = 55.00
 va = 0
 poltronas = [1, 2 ,3 , 4 ,5 , 6, 7, 8, 9, 10]
-#veiculos, selecionar horarios, comprar passagem, poltronas disponiveis  
 
+#veiculos, selecionar horarios, comprar passagem, poltronas disponiveis  
+veiculos = ['Ônibus 1', 'Ônibus 2', 'Van 1', 'Micro-ônibus']
 
 #Funções
 def m_usuario():
@@ -77,7 +78,7 @@ def m_admin():
 
         adm= int(input('Digite o número correspondente: '))
 
-        if adm == 1: itinierarios()
+        if adm == 1: ''
         elif adm == 2: ''
         elif adm == 3:  ''  
         elif adm == 4: 
