@@ -29,9 +29,8 @@ carrinho = []
 valores = 55.00
 va = 0
 poltronas = [1, 2 ,3 , 4 ,5 , 6, 7, 8, 9, 10]
-
 #veiculos, selecionar horarios, comprar passagem, poltronas disponiveis  
-veiculos = ['Ônibus 1', 'Ônibus 2', 'Van 1', 'Micro-ônibus']
+
 
 #Funções
 def m_usuario():
@@ -71,6 +70,7 @@ def login_motorista():
         else:
             print ('senha incorreta!! ')
             break
+        
 
 
 
@@ -84,11 +84,16 @@ def m_motorista():
 
         if moto == 1:
             itinierarios()
-        elif moto == 2: ''
-        elif moto == 3:  ''  
+        elif moto == 2: 
+            onibus()
+        elif moto == 3: '' 
         elif moto == 4: 
             print('Fechando o Programa')
             break
+    
+def onibus(): 
+    print('opa, só pra testar')
+
 
 
 
@@ -101,7 +106,7 @@ def m_admin():
 
         adm= int(input('Digite o número correspondente: '))
 
-        if adm == 1: ''
+        if adm == 1: itinierarios()
         elif adm == 2: ''
         elif adm == 3:  ''  
         elif adm == 4: 
