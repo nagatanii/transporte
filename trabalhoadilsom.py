@@ -31,8 +31,8 @@ valores = 55.00
 va = 0
 poltronas = [1, 2 ,3 , 4 ,5 , 6, 7, 8, 9, 10]
 
-#veiculos, selecionar horarios, comprar passagem, poltronas disponiveis  
-veiculos = ['Ônibus 1', 'Ônibus 2', 'Van 1', 'Micro-ônibus']
+#veiculos
+veiculos = ['Ônibus 1', 'Ônibus 2', 'Van', 'Micro-ônibus']
 
 #Funções
 def m_usuario():
@@ -93,22 +93,32 @@ def m_motorista():
         os.system('cls')
         print('----- Menu Motorista -----')
         print('1. Veículos Disponíveis')
-        print('2. Rotas') 
-        print('3. Sair')
+        print('2. Rotas Disponiveis') 
+        print('3. Paradas')
+        print('4. Sair')
         moto = int(input('Digite o número correspondente ao que Deseja: '))
 
         if moto == 1:
-            itinierarios()
+            veiculos_d()
         elif moto == 2: 
-            onibus()
-        elif moto == 3:
+            rotas_d()
+        elif moto == 3: 
+            paradas_d()
+        elif moto == 4:
             print('Fechando o Programa')
             os.system('cls')
             break
     
-def onibus(): 
-    print('opa, só pra testar')
+def veiculos_d(): 
+    while True:
+        print(veiculos)
+        break
 
+def rotas_d():
+    print
+
+def paradas_d():
+    print
 
 
 
