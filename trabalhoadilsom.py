@@ -12,12 +12,13 @@ import time
 
 #variaveis
 login1 = 0
-carrinho = []
 
 #senhas
 senha_motorista = '1234567'
-login_motoriostaa = 'kauan'
+login_motoristaa = 'kauan'
 
+senha_administrador = '7654321'
+login_administradorr = 'vinicius'
 
 #Listas
 
@@ -29,8 +30,9 @@ carrinho = []
 valores = 55.00
 va = 0
 poltronas = [1, 2 ,3 , 4 ,5 , 6, 7, 8, 9, 10]
-#veiculos, selecionar horarios, comprar passagem, poltronas disponiveis  
 
+#veiculos, selecionar horarios, comprar passagem, poltronas disponiveis  
+veiculos = ['Ônibus 1', 'Ônibus 2', 'Van 1', 'Micro-ônibus']
 
 #Funções
 def m_usuario():
@@ -49,6 +51,7 @@ def m_usuario():
         elif usu == 3: bilhetes() 
         elif usu == 4: 
             print('Fechando o Programa...')
+            os.system('cls')
             break
 
 def login_motorista():
@@ -57,25 +60,37 @@ def login_motorista():
     print ('\n')
     while True:
         login =  input('Digite seu login de usuário: ')
-        if login == login_motoriostaa:
-            print ('login correto')
-        else:
-            print ('login incorreto!! ')
         senha = input('Digite a sua senha: ')
-        if senha == senha_motorista:
-            print ('senha correta!! Caregando....')
+        if login == login_motoristaa and senha == senha_motorista:
+            print ('login correto!! Carregando...')
             time.sleep(3)
-            m_motorista()
-            os.system('cls')
-        else:
-            print ('senha incorreta!! ')
-            break
+            return m_motorista()
+        else: print('login incorreto! Tente outra vez')
+        time.sleep(2)
+        os.system('cls')
+        login_motorista
         
 
+def login_administrador():
+    os.system('cls')
+    print('---------LOGIN ADMINISTRADOR---------')
+    print ('\n')
+    while True:
+        login =  input('Digite seu login de usuário: ')
+        senha = input('Digite a sua senha: ')
+        if login == login_administradorr and senha == senha_administrador:
+            print ('login correto!! Carregando...')
+            time.sleep(3)
+            return m_admin()
+        else: print('login incorreto! Tente outra vez')
+        time.sleep(2)
+        os.system('cls')
+        login_administrador
 
 
 def m_motorista():
     while True:
+        os.system('cls')
         print('----- Menu Motorista -----')
         print('1. Veículos Disponíveis')
         print('2. Rotas') 
@@ -86,9 +101,9 @@ def m_motorista():
             itinierarios()
         elif moto == 2: 
             onibus()
-        elif moto == 3: '' 
-        elif moto == 4: 
+        elif moto == 3:
             print('Fechando o Programa')
+            os.system('cls')
             break
     
 def onibus(): 
@@ -99,6 +114,7 @@ def onibus():
 
 def m_admin():
     while True:
+        os.system('cls')
         print('----- Menu Administrador -----')
         print('1. Remover Veículos')
         print('2. Trocar Rotas') 
@@ -106,12 +122,13 @@ def m_admin():
 
         adm= int(input('Digite o número correspondente: '))
 
-        if adm == 1: itinierarios()
+        if adm == 1: ''
         elif adm == 2: ''
-        elif adm == 3:  ''  
-        elif adm == 4: 
+        elif adm == 3:  
             print('Fechando o Programa')
+            os.system('cls')
             break
+            
 
 
 def login():
@@ -129,9 +146,9 @@ def login():
         if login1 == 1:
             m_usuario()
         elif login1 == 2:
-            m_motorista()
+            login_motorista()
         elif login1 == 3:
-            m_admin()
+            login_administrador()
         elif login1 == 4:
             print('Fechando...')
             break 
@@ -196,8 +213,8 @@ def bilhetes():
             total += item['valor']
 
         print(f"\nTotal: R$ {total:.2f}")
-        continuar = input("\nDeseja voltar? (s/n): ").lower()
-        if continuar != 's':
+        continuar = input("\nPressione (Enter) para sair: ")
+        if continuar == '':
             break
 
 
