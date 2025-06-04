@@ -32,7 +32,11 @@ va = 0
 poltronas = [1, 2 ,3 , 4 ,5 , 6, 7, 8, 9, 10]
 
 #veiculos
-veiculos = ['Ônibus 1', 'Ônibus 2', 'Van', 'Micro-ônibus']
+onibus1 = 0
+onibus2 = 0
+microonibus = 0
+van = 0
+
 
 #Funções
 def m_usuario():
@@ -110,9 +114,54 @@ def m_motorista():
             break
     
 def veiculos_d(): 
+    os.system('cls')
+
+    v_escolhido = 0
+
+
     while True:
-        print(veiculos)
-        break
+        if escolha_feita :
+            print("\nVocê já escolheu um veículo. Não é possível escolher novamente.")
+            time.sleep(2)
+            break
+        else:
+
+            print('----- Menu veículos -----')
+        print('1. Ônibus 1')
+        print('2. Ônibus 2') 
+        print('3. Micro-õnibus')
+        print('4. Van')
+        print('0. Sair')
+
+        ve = int(input("Digite o numero correspondente ao veiculo Que Deseja!! "))
+  
+        if escolha_feita :
+            print("\nVocê já escolheu um veículo. Não é possível escolher novamente.")
+            time.sleep(2)
+            break
+
+        if ve == 1:
+            v_escolhido = "Ônibus 1"
+        elif ve == 2:
+            v_escolhido = "Ônibus 2"
+        elif ve == 3:
+            v_escolhido = "Micro-ônibus"
+        elif ve == 4:
+            v_escolhido = "Van"
+        elif ve == 0:
+            print("Fechando o programa...")
+            os.system('cls')
+            break
+        else:
+            print("Opção inválida, tente novamente.")
+            return veiculos_d()
+        escolha_feita = [ve]  
+        if ve:
+            print(f"\nSeu veículo escolhido foi: {v_escolhido}")
+            escolha_feita = True
+            time.sleep(1)
+            continue  # Sai do loop após uma escolha válida
+        
 
 def rotas_d():
     print
@@ -185,7 +234,6 @@ def itinierarios():
             print("Opção inválida ou apenas visualização. Tente novamente.\n")
 
     
-
 def passagem():
     os.system('cls')
     while True:
