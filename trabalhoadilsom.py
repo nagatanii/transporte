@@ -31,7 +31,9 @@ valores = 55.00
 va = 0
 poltronas = [1, 2 ,3 , 4 ,5 , 6, 7, 8, 9, 10]
 
-#veiculos
+#Lista de veiculos
+veiculos = ['Ônibus 1', 'Ônibus 2', 'Van', 'Micro-ônibus']
+
 onibus1 = 0
 onibus2 = 0
 microonibus = 0
@@ -181,14 +183,33 @@ def m_admin():
 
         adm= int(input('Digite o número correspondente: '))
 
-        if adm == 1: ''
+        if adm == 1: remover_veiculo()
         elif adm == 2: ''
         elif adm == 3:  
             print('Fechando o Programa')
             os.system('cls')
             break
             
+def remover_veiculo():
+    os.system('cls')
+    print('--- Remover Veículo ---\n')
+    
+    if not veiculos:  #Verifica se a lista veiculos está vazia
+        print('Nenhum veículo disponível para remoção.\n')
+    else:
+        for i, v in enumerate(veiculos):
+            print(f'{i + 1}. {v}')
+        try:
+            opcao = int(input('\nDigite o número do veículo que deseja remover: '))
+            if 1 <= opcao <= len(veiculos):
+                removido = veiculos.pop(opcao - 1)
+                print(f'\n{removido} foi removido com sucesso.')
+            else:
+                print('\nOpção inválida.')
+        except ValueError:
+            print('\nEntrada inválida. Digite apenas números.')
 
+    input('\nPressione Enter para voltar ao menu...')
 
 def login():
    while True: 
