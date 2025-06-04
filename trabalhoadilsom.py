@@ -226,12 +226,14 @@ def itinierarios():
             print(f'\033[1;37;40mHorário de Saída: {saida[i]} --> Horário de Chegada: {chegada[i]}')
     
     
-        opcao = input("\n\033[1;37;40mDigite \033[1;31;40m0\033 para voltar ao menu anterior: \033[m")
+        opcao = input("\n\033[1;37;40mDigite 0 \033[1;31;40m\033 ppara voltar ao menu anterior: \033[m")
 
         if opcao == '0':
             break  # Sai do loop e retorna ao menu anterior
         else:
             print("\033[1;37;40mOpção inválida ou apenas visualização. Tente novamente.\n")
+            time.sleep
+            os.system('cls')
 
     
 def passagem():
