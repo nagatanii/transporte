@@ -12,6 +12,8 @@ import time
 
 #variaveis
 login1 = 0
+v_escolhido = None
+ve = None
 
 #senhas
 senha_motorista = '1234567'
@@ -32,12 +34,7 @@ va = 0
 poltronas = [1, 2 ,3 , 4 ,5 , 6, 7, 8, 9, 10]
 
 #Lista de veiculos
-veiculos = ['Ônibus 1', 'Ônibus 2', 'Van', 'Micro-ônibus']
-
-onibus1 = 0
-onibus2 = 0
-microonibus = 0
-van = 0
+veiculos = ['Ônibus 1', 'Ônibus 2', 'Micro-ônibus', 'van']
 
 
 #Funções
@@ -70,11 +67,11 @@ def login_motorista():
         if login == login_motoristaa and senha == senha_motorista:
             print ('login \033[32mcorreto!!\033[m Carregando...')
             time.sleep(3)
-            return m_motorista()
+            m_motorista()
         else: print('login \033[31mincorreto!\033[m Tente outra vez')
         time.sleep(2)
         os.system('cls')
-        login_motorista
+        login_motorista()
         
 
 def login_administrador():
@@ -98,58 +95,64 @@ def m_motorista():
     while True:
         os.system('cls')
         print('----- Menu Motorista -----')
-        print('1. Veículos Disponíveis')
-        print('2. Rotas Disponiveis') 
+        print('1. Rotas Disponiveis')
+        print('2. Veículos Disponiveis') 
         print('3. Paradas')
         print('4. Sair')
-        moto = int(input('Digite o número correspondente ao que Deseja: '))
 
+        try:
+            moto = int(input('Digite o número correspondente ao que Deseja: '))
+        except:
+            print('Digite Apenas Numeros Válidos!!')
+            time.sleep(2)
+            os.system('cls')
+            continue
         if moto == 1:
-            veiculos_d()
-        elif moto == 2: 
             rotas_d()
+        elif moto == 2: 
+            veiculos_d()
         elif moto == 3: 
             paradas_d()
         elif moto == 4:
-            print('Fechando o Programa')
+            print('Fechando o Menu')
             os.system('cls')
+            login()
             break
     
 def veiculos_d(): 
-    os.system('cls')
+    os.system('cls') #limpa tela
+    global v_escolhido, ve # puxa as variavéis que estão fora para dentro da função
 
-    v_escolhido = 0
-
+    if v_escolhido is not None: # se v_escolhido for verdadeiro ou true, aparecerá está mensagem dizendo, que o veiculo está armazenado.
+        print('---------- Menu veículos ----------')
+        print(f"\nVocê já escolheu o veículo: {v_escolhido}")
+        print("\nNão é possível escolher novamente.")
+        time.sleep(3)
+        return
 
     while True:
-        if escolha_feita :
-            print("\nVocê já escolheu um veículo. Não é possível escolher novamente.")
-            time.sleep(2)
-            break
-        else:
 
-            print('----- Menu veículos -----')
+        print('----- Menu veículos -----')
         print('1. Ônibus 1')
         print('2. Ônibus 2') 
         print('3. Micro-onibus')
         print('4. Van')
         print('0. Sair')
-
-        ve = int(input("Digite o numero correspondente ao veiculo Que Deseja!! "))
-  
-        if escolha_feita :
-            print("\nVocê já escolheu um veículo. Não é possível escolher novamente.")
-            time.sleep(2)
-            break
-
+         
+        try:                    # Tenta executar o código
+            ve = int(input("Digite o numero correspondente ao veiculo Que Deseja:  "))
+        except:                 # Se der algum erro no código acima (por exemplo, se o usuário digitar letras), o programa não trava. Em vez disso, executa este bloco aqui.
+            print("Por favor, digite apenas números válidos.")
+            time.sleep(2) # Tempo para realizar a ação
+        
         if ve == 1:
-            v_escolhido = "Ônibus 1"
+            v_escolhido = veiculos[0]
         elif ve == 2:
-            v_escolhido = "Ônibus 2"
+            v_escolhido = veiculos[1]
         elif ve == 3:
-            v_escolhido = "Micro-ônibus"
+            v_escolhido = veiculos[2]
         elif ve == 4:
-            v_escolhido = "Van"
+            v_escolhido = veiculos[3]
         elif ve == 0:
             print("Fechando o programa...")
             os.system('cls')
@@ -157,13 +160,15 @@ def veiculos_d():
         else:
             print("Opção inválida, tente novamente.")
             return veiculos_d()
-        escolha_feita = [ve]  
+        
+        
         if ve:
             print(f"\nSeu veículo escolhido foi: {v_escolhido}")
-            escolha_feita = True
             time.sleep(1)
-            continue  # Sai do loop após uma escolha válida
-        
+            return  
+        else:
+            print("Opção inválida, tente novamente.")
+            continue
 
 def rotas_d():
     print
@@ -220,8 +225,15 @@ def login():
         print('\033[1;37;40m3. Administrador')
         print('\033[1;31;40m4. Sair\033[m')
 
+        try:
+            login1 = int(input('\n\033[1;37;40mDigite o Número correspondente: '))
+        except:
+            print('\n')
+            print(f"Digite Apenas Numeros Válidos!!")
+            time.sleep(2)
+            os.system('cls')
+            continue
         
-        login1 = int(input('\n\033[1;37;40mDigite o Número correspondente: '))
 
         if login1 == 1:
             m_usuario()
@@ -234,6 +246,9 @@ def login():
             break 
         else:
             print('Nenhuma Correspondência, Digite Novamente!')
+            time.sleep(1)
+            os.system('cls')
+            login()
 
     
 
