@@ -14,23 +14,23 @@ import time
 login1 = 0
 v_escolhido = None
 ve = None
+valores = 55.00
+va = 0
 
-#senhas
+#Senhas
 senha_motorista = '1234567'
 login_motoristaa = 'kauan'
 
 senha_administrador = '7654321'
 login_administradorr = 'vinicius'
 
-#Listas
+#Lista de horarios 
 
 saida = ['06:00', '07:30', '09:00', '10:30', '12:00']
 chegada = ['07:30', '09:00', '10:30', '12:00', '13:30']
 
 #lista de compra da passagem
 carrinho = []
-valores = 55.00
-va = 0
 poltronas = [1, 2 ,3 , 4 ,5 , 6, 7, 8, 9, 10]
 
 #Lista de veiculos
@@ -236,7 +236,7 @@ def login():
         
 
         if login1 == 1:
-            m_usuario()
+            m_usuario() #interface do usuário 
         elif login1 == 2:
             login_motorista()
         elif login1 == 3:
@@ -252,17 +252,17 @@ def login():
 
     
 
-def itinierarios():
+def itinierarios(): #função para mostrar os horários de saída e chegada 
     os.system('cls')
-    print('----\033[1;37;40m Itinerários \033[m---\n')
+    print('----\033[1;32;40m Itinerários \033[m---\n')
 
     while True:
-        for i in range(len(saida)):
+        for i in range(len(saida)): #faz a leitura da lista com os horários de saída
                 
             print(f'\033[1;37;40mHorário de Saída: {saida[i]} --> Horário de Chegada: {chegada[i]}')
     
     
-        opcao = input("\n\033[1;37;40mDigite 0 \033[1;31;40m\033 ppara voltar ao menu anterior: \033[m")
+        opcao = input("\n\033[1;31;40mDigite 0 \033[1;37;40m\033 para voltar ao menu anterior: \033[m")
 
         if opcao == '0':
             break  # Sai do loop e retorna ao menu anterior
@@ -272,12 +272,12 @@ def itinierarios():
             os.system('cls')
 
     
-def passagem():
+def passagem(): #função para colocar poltronas no carrinho, e tambem listar quais estão disponiveis 
     os.system('cls')
     while True:
-        print('---- \033[1;37;40mCompra do Bilhete de Embarque\033[m ----\n')
+        print('---- \033[1;32;40mCompra do Bilhete de Embarque\033[m ----\n')
 
-        if not poltronas:
+        if not poltronas: 
             print("\033[1;31;40mTodas as poltronas estão ocupadas.")
             break
 
@@ -299,11 +299,11 @@ def passagem():
         if continuar != 's':
             break
 
-def bilhetes():
+def bilhetes(): #função para mostrar as poltronas adicionadas ao carrinho
     os.system('cls')
     while True:
         total = 0
-        print('----- \033[1;37;40mSeu Carrinho\033[m -----')
+        print('----- \033[1;32;40mSeu Carrinho\033[m -----')
         for item in carrinho:
             print(f"\033[1;37;40mPoltrona {item['poltrona']} - R$ {item['valor']:.2f}")
             total += item['valor']
@@ -315,19 +315,5 @@ def bilhetes():
 
 
 
-        
-    
-    
-
-
-
-
-def alguma():
-    pass
-    
 os.system('cls') # Limpa a tela
 login()
-    
-    
-
-
