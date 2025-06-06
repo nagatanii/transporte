@@ -68,10 +68,11 @@ def login_motorista():
             print ('login \033[32mcorreto!!\033[m Carregando...')
             time.sleep(3)
             m_motorista()
+            break
         else: print('login \033[31mincorreto!\033[m Tente outra vez')
         time.sleep(2)
         os.system('cls')
-        login_motorista()
+        print('---------LOGIN MOTORISTA---------')
         
 
 def login_administrador():
@@ -84,11 +85,11 @@ def login_administrador():
         if login == login_administradorr and senha == senha_administrador:
             print ('login \033[32mcorreto!!\033[m Carregando...')
             time.sleep(3)
-            return m_admin()
+            m_admin()
+            break
         else: print('login \033[31mincorreto!\033[m Tente outra vez')
         time.sleep(2)
         os.system('cls')
-        login_administrador
 
 
 def m_motorista():
@@ -116,7 +117,6 @@ def m_motorista():
         elif moto == 4:
             print('Fechando o Menu')
             os.system('cls')
-            login()
             break
     
 def veiculos_d(): 
@@ -248,7 +248,6 @@ def login():
             print('Nenhuma Correspondência, Digite Novamente!')
             time.sleep(1)
             os.system('cls')
-            login()
 
     
 
@@ -262,7 +261,7 @@ def itinierarios(): #função para mostrar os horários de saída e chegada
             print(f'\033[1;37;40mHorário de Saída: {saida[i]} --> Horário de Chegada: {chegada[i]}')
     
     
-        opcao = input("\n\033[1;31;40mDigite 0 \033[1;37;40m\033 para voltar ao menu anterior: \033[m")
+        opcao = input("\n\033[1;31;40mDigite 0 \033[1;37;40mpara voltar ao menu anterior: \033[m")
 
         if opcao == '0':
             break  # Sai do loop e retorna ao menu anterior
