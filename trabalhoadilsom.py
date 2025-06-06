@@ -62,9 +62,25 @@ def login_motorista():
     print('---------LOGIN MOTORISTA---------')
     print ('\n')
     while True:
-        login =  input('Digite seu login: ')
-        senha = input('Digite a sua senha: ')
-        if login == login_motoristaa and senha == senha_motorista:
+
+        sair = input('Digite 0 para sair ou pressione ENTER para continuar: ')
+        if sair == '0':
+            print('Fechando...')
+            time.sleep(1)
+            os.system('cls')
+            return login()
+        
+
+        loginn =  input('Digite seu login: ')
+        senhaa = input('Digite a sua senha: ')
+        
+       
+        if loginn == 0:
+            print('fechando...')
+            login()
+
+
+        if loginn == login_motoristaa and senhaa == senha_motorista:
             print ('login \033[32mcorreto!!\033[m Carregando...')
             time.sleep(3)
             m_motorista()
@@ -93,6 +109,7 @@ def login_administrador():
 
 
 def m_motorista():
+    os.system('cls')
     while True:
         os.system('cls')
         print('----- Menu Motorista -----')
@@ -118,6 +135,9 @@ def m_motorista():
             print('Fechando o Menu')
             os.system('cls')
             break
+        login()
+            
+
     
 def veiculos_d(): 
     os.system('cls') #limpa tela
@@ -165,17 +185,67 @@ def veiculos_d():
         if ve:
             print(f"\nSeu veículo escolhido foi: {v_escolhido}")
             time.sleep(1)
-            return  
+            return m_motorista()  
         else:
             print("Opção inválida, tente novamente.")
             continue
 
 def rotas_d():
-    print
+    os.system('cls')
+    global v_escolhido
+    if v_escolhido is not None:
+        print(f'seu veiculo escolhido foi {v_escolhido} ')
+        if v_escolhido == veiculos[0]:
+            print('A sua rota é: Mogi > Guarulhos')
+        elif v_escolhido == veiculos[1]:
+            print('A sua rota é: Mogi > São José Dos Campos')
+        elif v_escolhido == veiculos[2]:
+            print('A sua rota é: Mogi > Guararema')
+        elif v_escolhido == veiculos[3]:
+            print('A sua rota é: Mogi > Bertioga')
+    else:
+        print('Você ainda não escolheu um veículo.')
+
+    print('-------ROTAS DISPONIVEIS-------')
+    print('Rota Ônibus 1: Mogi > Guarulhos')
+    print('Rota Ônibus 2: Mogi > São José Dos Campos')
+    print('Rota Micro-Ônibus: Mogi > Guararema')
+    print('Rota Van: Mogi > Santos')  
+    while True:
+        tecla = input('Digite 0 para voltar ao menu...: ')
+        if tecla.strip() == '0': # só continua se for exatamente "0"
+            return m_motorista() 
+        else:
+            print('tecla invalida, tente novamente!!')
+        
 
 def paradas_d():
-    print
-
+    global v_escolhido
+    os.system('cls')
+    if v_escolhido is not None:
+        print(f'seu veiculo escolhido foi {v_escolhido} Suas Paradas São: \n')
+        if v_escolhido == veiculos[0]:
+            print('---------Suzano; Itaim Paulista---------')
+        elif v_escolhido == veiculos[1]:
+            print('---------Guararema; Jacareí---------')
+        elif v_escolhido == veiculos[2]:
+            print('---------Sabaúna---------')
+        elif v_escolhido == veiculos[3]:
+            print('---------Mauá; Cubatão---------')
+    else:
+        print('Você ainda não escolheu um veículo.')
+        
+        print('-------PARADAS-------')
+        print('|Mogi > guarulhos          | Parada em suzano e itaim paulista')
+        print('|Mogi > são josé dos campos| parada em guararema e jacareí')
+        print('|Mogi > guararema          | parada em sabauna')
+        print('|Mogi > Santos             | parada em mauá e cubatão') 
+    while True:
+        tecla = input('\n\nDigite 0 para voltar ao menu...: ')
+        if tecla.strip() == '0': # só continua se for exatamente "0"
+            return m_motorista() 
+        else:
+            print('tecla invalida, tente novamente!!')
 
 
 def m_admin():
@@ -217,6 +287,7 @@ def remover_veiculo():
     input('\nPressione Enter para voltar ao menu...')
 
 def login():
+   os.system('cls')
    while True: 
     
         print('----\033[1;32;40mSelecione o Seu Perfil\033[m----')
