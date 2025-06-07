@@ -247,31 +247,31 @@ def rotas_d():
         
 # usado pelo administrador para excluir rotas.
 def remover_rota():
-    global rotas, veiculos
+    global rotas, veiculos               # Permite modificar as listas globais de rotas e veículos
     os.system('cls')
     print('--- Remover Rota ---\n')
 
-    if not rotas:
+    if not rotas:               # Verifica se a lista de rotas está vazia
         print('Nenhuma rota disponível para remoção.\n')
     else:
-        for i in range(min(len(rotas), len(veiculos))):
-            print(f'{i + 1}. {veiculos[i]}: {rotas[i]}')
+        for i in range(min(len(rotas), len(veiculos))):             # Garante que não dará erro se uma lista for menor que a outra
+            print(f'{i + 1}. {veiculos[i]}: {rotas[i]}')            # Mostra o número da opção, o veículo e sua rota
 
         try:
             opcao = int(input('\nDigite o número da rota que deseja remover: '))
             if 1 <= opcao <= len(rotas):
-                removida = rotas.pop(opcao - 1)
+                removida = rotas.pop(opcao - 1)          #Remove a rota e o veículo correspondente (ajuste de -1 porque a lista começa do 0)
                 veiculo_removido = veiculos.pop(opcao - 1)
                 print(f'\nRota "{removida}" do veículo "{veiculo_removido}" foi removida com sucesso.')
                 
-                # Se o veículo removido for o escolhido pelo motorista, resetar a escolha
+                # Se o veículo removido for o escolhido pelo motorista, reseta a escolha
                 global v_escolhido
                 if v_escolhido == veiculo_removido:
                     v_escolhido = None
                     print('Veículo selecionado pelo motorista foi removido. A escolha foi resetada.')
             else:
                 print('\nOpção inválida.')
-        except ValueError:
+        except ValueError:          # Caso o usuário digite algo que não seja um número
             print('\nEntrada inválida. Digite apenas números.')
 
     input('\nPressione Enter para voltar ao menu...')
@@ -285,12 +285,13 @@ def m_admin():
         print('2. Remover Rotas') 
         print('3. Sair')
 
-        try:
+        try:                
             adm= int(input('Digite o número correspondente: '))
-        except:
+        except:                 # Se o usuário digitar algo que não seja número, mostra erro
             print('Digite apenas números válidos.')
-            time.sleep(2)
-            continue
+            time.sleep(2)               #temporizador
+            continue                     # Volta para o início do menu
+
 
         if adm == 1:
             remover_veiculo()
@@ -298,8 +299,8 @@ def m_admin():
             remover_rota()
         elif adm == 3:  
             print('Fechando o Programa')
-            os.system('cls')
-            break
+            os.system('cls')    #limpa tela
+            break           # Sai do loop (encerra o menu)
         else:
             print('Opção inválida.')
             time.sleep(2)
@@ -310,26 +311,26 @@ def remover_veiculo():
     os.system('cls')
     print('--- Remover Veículo ---\n')
 
-    if not veiculos:
+    if not veiculos:            # Verifica se a lista de veículos está vazia
         print('Nenhum veículo disponível para remoção.\n')
     else:
-        for i, v in enumerate(veiculos):
+        for i, v in enumerate(veiculos):                # Mostra os veículos disponíveis com numeração
             print(f'{i + 1}. {v}')
 
         try:
             opcao = int(input('\nDigite o número do veículo que deseja remover: '))
-            if 1 <= opcao <= len(veiculos):
-                removido = veiculos.pop(opcao - 1)
-                rota_removida = rotas.pop(opcao - 1)  # REMOVER a rota também!
+            if 1 <= opcao <= len(veiculos):              # Verifica se a opção digitada está dentro do intervalo válido
+                removido = veiculos.pop(opcao - 1)       # Remove o veículo da lista (subtrai 1 porque o índice começa em 0)
+                rota_removida = rotas.pop(opcao - 1)     # Remove a rota correspondente ao mesmo índice
                 print(f'\nVeículo "{removido}" e rota "{rota_removida}" foram removidos com sucesso.')
                 
-                global v_escolhido
+                global v_escolhido                      # Acessa a variável global de veículo escolhido
                 if v_escolhido == removido:
                     v_escolhido = None
                     print('Veículo escolhido pelo motorista foi removido.')
             else:
                 print('\nOpção inválida.')
-        except ValueError:
+        except ValueError:                       # Caso o usuário digite algo que não seja número (ex: letra)
             print('\nEntrada inválida. Digite apenas números.')
 
     input('\nPressione Enter para voltar ao menu...')
@@ -395,41 +396,42 @@ def passagem(): #função para colocar poltronas no carrinho, e tambem listar qu
     while True:
         print('---- \033[1;32;40mCompra do Bilhete de Embarque\033[m ----\n')
 
-        if not poltronas: 
+        if not poltronas:               # Verifica se a lista de poltronas está vazia (ou seja, todas ocupadas)
             print("\033[1;31;40mTodas as poltronas estão ocupadas.")
             break
 
         print('----- \033[1;30;42mPoltronas Disponíveis\033[m -----')
-        for p in poltronas:
+        for p in poltronas:              #Percorre cada poltrona disponível
             print(f'\033[1;37;40mPoltrona: {p}')
 
         print('\n----\033[1;37;40m Valor Unítario da Passagem:\033[m \033[1;30;42mR$ 55,00\033[m ----\n')
         escolha = int(input('\033[1;37;40mDigite o número da poltrona desejada:'))
         
-        if escolha in poltronas: 
-            poltronas.remove(escolha)
-            carrinho.append({'poltrona': escolha, 'valor': valores})
+        if escolha in poltronas:                # Se a poltrona ainda está disponível
+            poltronas.remove(escolha)           # Remove a poltrona da lista de disponíveis
+            carrinho.append({'poltrona': escolha, 'valor': valores})         # Adiciona a poltrona no carrinho
             print(f'\n\033[1;37;40mPoltrona {escolha} adicionada ao carrinho.')
         else:
-            print("\nPoltrona \033[1;30;41m indisponível ou inválida.\033[m")
+            print("\nPoltrona \033[1;30;41m indisponível ou inválida.\033[m")       # Mensagem de erro se a poltrona já foi escolhida ou não existe
         
         continuar = input("\n\033[1;37;40mDeseja escolher outra poltrona? (s/n): ").lower() #transforma a string em minusculo para não dar erro
-        if continuar != 's':
+        if continuar != 's':           # Se não for "s", sai do loop
             break
 
 # exibe o conteúdo do carrinho.
 def bilhetes(): #função para mostrar as poltronas adicionadas ao carrinho
     os.system('cls')
     while True:
-        total = 0
+        total = 0                                                     # Cria uma variável para somar o valor total dos itens no carrinho
         print('----- \033[1;32;40mSeu Carrinho\033[m -----')
-        for item in carrinho:
+        for item in carrinho:                 # Percorre cada item no carrinho
+
             print(f"\033[1;37;40mPoltrona {item['poltrona']} - R$ {item['valor']:.2f}")
-            total += item['valor']
+            total += item['valor']              # Soma o valor do item ao total
 
         print(f"\n\033[1;37;40mTotal:\033[m \033[1;30;42mR$ {total:.2f}\033[m")
         continuar = input("\nPressione (Enter) para sair: ")
-        if continuar == '':
+        if continuar == '':         # Se o usuário apenas pressionar ENTER (entrada vazia), o loop é encerrado
             break
 
 
